@@ -12,7 +12,11 @@ const storageSpaceSchema = new mongoose.Schema({
     refrigeration: {
         type: Boolean,
         default: false
-    }
+    },
+    current_count: {
+        type: Number,
+        default: 0,
+      }
 }, { timestamps: true });
 
 const StorageSpace = mongoose.model('StorageSpace', storageSpaceSchema);
