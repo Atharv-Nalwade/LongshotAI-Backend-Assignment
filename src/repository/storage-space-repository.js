@@ -2,6 +2,7 @@ const StorageSpace = require("../models/storage-space.js");
 
 class StorageSpaceRepository {
 
+
   // Method to create a new storage space
   async create(name, max_limit, refrigeration) {
     try {
@@ -9,6 +10,34 @@ class StorageSpaceRepository {
         return storageSpace;
     } catch (error) {
         console.log(error);
+    }
+  }
+
+  async storageSpaceExists(storage_space_id){
+    try {
+       if( await StorageSpace.findById(storage_space_id) ) return true;
+       return false;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async isStorageSpaceFull(storage_space_id){
+    try{
+      const size =await StorageSpace.findById(storage_space_id);
+      console.log(size);
+      if(size.current_count < size.max_limit) return false;
+      else return true;
+    }catch(error){
+      console.log(error);
+    }
+  }
+
+  async increaseStorageSpaceCount(storage_space_id){
+    try {
+      await StorageSpace.findByIdAndUpdate(storage_space_id, { $inc: { current_count: 1 } }, { new: true });
+    } catch (error) {
+      console.log(error);
     }
   }
 
