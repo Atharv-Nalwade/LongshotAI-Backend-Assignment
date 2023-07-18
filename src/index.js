@@ -17,4 +17,5 @@ app.listen(3000, async () => {
   console.log("Server is listening on port 3000");
 
   clearExpiredItems();
+  setInterval(clearExpiredItems, 24 * 60 * 60 * 1000);
 });
