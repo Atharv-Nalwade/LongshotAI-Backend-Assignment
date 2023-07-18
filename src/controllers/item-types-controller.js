@@ -6,6 +6,13 @@ const createItemType = async (req, res) => {
     try {
         const { name, requires_refrigeration } = req.body;
         const itemType = await itemTypesService.createItemType(name, requires_refrigeration);
+        if(itemType === "Item Type already exists"){
+            return res.status(400).json({
+                message: itemType,
+                data: {},
+                success: false,
+            });
+        }
         return res.status(201).json({
             message: 'Item Type created successfully',
             data: itemType,

@@ -6,6 +6,13 @@ const createItem = async (req, res) => {
     try {
         const { item_type_id, storage_space_id, expiration_date } = req.body;
         const item = await itemsService.createItem(item_type_id, storage_space_id, expiration_date);
+        if (item == "Item Type or Storage Space does not exist or Storage Space is full or Expiration Date is in the past."){
+            return res.status(400).json({
+                message: 'Item Type or Storage Space does not exist or Storage Space is full or Expiration Date is in the past.',
+                data: {},
+                success: false,
+            });
+        }
         return res.status(201).json({
             message: 'Item created successfully',
             data: item,
@@ -22,7 +29,8 @@ const createItem = async (req, res) => {
 
 const getAllItems = async (req, res) => {
     try {
-        const items = await itemsService.getAllItems();
+        const { sortingManner } = req.body;
+        const items = await itemsService.getAllItems(sortingManner);
         return res.status(200).json({
             message: 'Items retrieved successfully',
             data: items,

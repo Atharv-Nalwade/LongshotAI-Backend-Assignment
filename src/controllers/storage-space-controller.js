@@ -7,6 +7,13 @@ const createStorageSpace = async (req, res) => {
     try {
         const { name, max_limit, refrigeration } = req.body;
         const storageSpace = await StorageSpaceService.createStorageSpace(name, max_limit, refrigeration);
+        if(storageSpace == "Storage Space already exists"){
+            return res.status(409).json({
+                message: 'Storage Space already exists',
+                data: {},
+                success: false,
+            });
+        }
         return res.status(201).json({
             message: 'Storage Space created successfully',
             data: storageSpace,
