@@ -15,9 +15,9 @@ class ItemService{
         }
     }
 
-    async getAllItems(){
+    async getAllItems(sortingManner){
         try {
-            const items = await this.itemRepository.getAllItems();
+            const items = await this.itemRepository.getAllItems(sortingManner);
             return items;
         } catch (error) {
             console.log(error);
