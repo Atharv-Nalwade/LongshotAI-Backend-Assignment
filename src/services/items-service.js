@@ -23,6 +23,24 @@ class ItemService{
             console.log(error);
         }
     }
+
+    async relocateItem(item_id,storage_space_id){
+        try {
+            const relocatedItem = await this.itemRepository.relocateItem(item_id,storage_space_id);
+            return relocatedItem;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async deleteItem(item_id){
+        try {
+            const deletedItem = await this.itemRepository.deleteItem(item_id);
+            return deletedItem;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = ItemService;

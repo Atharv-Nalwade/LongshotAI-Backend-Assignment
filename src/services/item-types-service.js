@@ -22,6 +22,15 @@ class ItemTypeService{
             console.log(error);
         }
     }
+
+    async deleteItemType(id){
+        try {
+            const deletedItemType = await this.itemTypeRepository.deleteItemType(id);
+            return deletedItemType;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 

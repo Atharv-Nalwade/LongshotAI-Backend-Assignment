@@ -32,6 +32,15 @@ class StorageSpaceService{
       console.log(error);
     }
   }
+
+  async deleteStorageSpace(id){
+    try {
+      const deletedStorageSpace = await this.storageSpaceRepository.deleteStorageSpace(id);
+      return deletedStorageSpace;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = StorageSpaceService;
