@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Item = require("./item.js");
 
 const storageSpaceSchema = new mongoose.Schema(
   {
