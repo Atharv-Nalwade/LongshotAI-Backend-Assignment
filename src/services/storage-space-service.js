@@ -14,6 +14,24 @@ class StorageSpaceService{
         console.log(error);
     }
   }
+
+  async renameStorageSpace(id,name){
+     try {
+       const renamedStorageSpace = await this.storageSpaceRepository.renameStorageSpace(id,name);
+       return renamedStorageSpace;
+     } catch (error) {
+      console.log(error);
+     }
+  }
+
+  async getItemsInStorageSpace(storage_space_id){
+    try {
+       const items = await this.storageSpaceRepository.getItemsInStorageSpace(storage_space_id);
+        return items;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
 
 module.exports = StorageSpaceService;
