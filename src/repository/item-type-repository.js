@@ -21,6 +21,28 @@ class ItemTypeRepository{
             console.log(error);
         }
     }
+
+    async renameItemType(id,name){
+        try {
+            const itemType = await ItemType.findByIdAndUpdate(id,{ name },{ new: true });
+            return itemType;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async deleteItemType(id){
+        try {
+          const itemsCount = await Item.countDocuments({ 'item_type_id': id });
+          if (itemsCount > 0) {
+             return "Cannot delete item type. Items are linked to it."; 
+          }
+          await ItemType.findByIdAndDelete(id);
+          return "Item type deleted successfully.";
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 
