@@ -43,6 +43,15 @@ class ItemTypeRepository{
             console.log(error);
         }
     }
+
+    async isItemTypeRefrigerated(item_type_id){
+        try {
+            const itemType = await ItemType.findById(item_type_id);
+            return itemType.requires_refrigeration;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 

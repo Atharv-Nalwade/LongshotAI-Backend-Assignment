@@ -14,7 +14,9 @@ class ItemRepository {
       if (
         (await this.itemTypeRepository.itemTypeExists(item_type_id)) &&
         (await this.storageSpaceRepository.storageSpaceExists(storage_space_id)) &&
-        !(await this.storageSpaceRepository.isStorageSpaceFull(storage_space_id))
+        !(await this.storageSpaceRepository.isStorageSpaceFull(storage_space_id)) &&
+        ( new Date(expiration_date)> new Date() ) &&
+        (await this.storageSpaceRepository.isStorageSpaceRefrigerated(storage_space_id) || !(await this.itemTypeRepository.isItemTypeRefrigerated(item_type_id)))
       ) {
         const item = await Item.create({
           item_type_id,
@@ -25,7 +27,7 @@ class ItemRepository {
         await this.storageSpaceRepository.addItems(storage_space_id, item._id);
         return item;
       } else {
-        return "Item Type or Storage Space does not exist or Storage Space is full";
+        return "Item Type or Storage Space does not exist or Storage Space is full or Expiration Date is in the past or Storage Space is not refrigerated and Item Type requires refrigeration.";
       }
     } catch (error) {
       console.log(error);
@@ -33,15 +35,26 @@ class ItemRepository {
   }
 
 
-  async getAllItems() {
+  async getAllItems(sortingManner) {
     try {
-      const items = await Item.find().populate({
+      let items;
+      if(sortingManner == "undefined"){
+       items = await Item.find().populate({
         path:"item_type_id",
         select:"name -_id"
       }).populate({
         path:"storage_space_id",
         select:"name -_id"
       });
+    }else{
+       items = await Item.find().populate({
+        path:"item_type_id",
+        select:"name -_id"
+      }).populate({
+        path:"storage_space_id",
+        select:"name -_id"
+      }).sort({expiration_date:sortingManner});
+    }
       return items;
     } catch (error) {
       console.log(error);

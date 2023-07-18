@@ -2,9 +2,10 @@ const StorageSpace = require("../models/storage-space.js");
 const ItemType = require("../models/item-type.js");
 
 class StorageSpaceRepository {
-  // Method to create a new storage space
+
   async create(name, max_limit, refrigeration) {
     try {
+      if( await StorageSpace.findOne({name:name})) return "Storage Space already exists";
       const storageSpace = await StorageSpace.create({
         name,
         max_limit,
@@ -28,7 +29,6 @@ class StorageSpaceRepository {
   async isStorageSpaceFull(storage_space_id) {
     try {
       const size = await StorageSpace.findById(storage_space_id);
-      console.log(size);
       if (size.current_count < size.max_limit) return false;
       else return true;
     } catch (error) {
@@ -92,6 +92,15 @@ class StorageSpaceRepository {
 
       console.log(items);
       return items;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async isStorageSpaceRefrigerated(storage_space_id) {
+    try {
+      const storageSpace = await StorageSpace.findById(storage_space_id);
+      return storageSpace.refrigeration;
     } catch (error) {
       console.log(error);
     }
