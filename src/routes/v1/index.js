@@ -6,20 +6,20 @@ const { createItemType,renameItemType,deleteItemType } = require("../../controll
 const { createItem, getAllItems, relocateItem, deleteItem } = require("../../controllers/items-controller.js");
 
 // Storage Spaces API
-router.post('/storage-spaces', createStorageSpace);
-router.put('/storage-spaces/:id', renameStorageSpace);
-router.delete('/storage-spaces/:id', deleteStorageSpace);
-router.get('/storage-spaces/:id/items', getItemsInStorageSpace);
+router.post('/storage-spaces', createStorageSpace);  
+router.put('/storage-spaces/:id', renameStorageSpace); 
+router.delete('/storage-spaces/:id', deleteStorageSpace); 
+router.get('/storage-spaces/:id/items', getItemsInStorageSpace); 
 
 // Item Types API
-router.post('/item-types', createItemType);
+router.post('/item-types', createItemType); 
 router.put('/item-types/:id', renameItemType);
 router.delete('/item-types/:id', deleteItemType);
 
 // Items API
-router.post('/items', createItem);
-router.get('/items', getAllItems);
-router.put('/items/:id/move', relocateItem);
-router.delete('/items/:id', deleteItem);
+router.post('/items', createItem); 
+router.get('/items', getAllItems); 
+router.put('/items/:id/move', relocateItem); 
+router.delete('/items/:id', deleteItem); 
 
 module.exports = router;
