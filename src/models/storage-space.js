@@ -1,24 +1,33 @@
 const mongoose = require("mongoose");
 
-const storageSpaceSchema = new mongoose.Schema({
+const storageSpaceSchema = new mongoose.Schema(
+  {
     name: {
-        type: String,
-        required: true
+      type: String,
+      required: true,
     },
     max_limit: {
-        type: Number,
-        required: true
+      type: Number,
+      required: true,
     },
     refrigeration: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
     current_count: {
-        type: Number,
-        default: 0,
-      }
-}, { timestamps: true });
+      type: Number,
+      default: 0,
+    },
+    items: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Item',
+      },
+    ],
+  },
+  { timestamps: true }
+);
 
-const StorageSpace = mongoose.model('StorageSpace', storageSpaceSchema);
+const StorageSpace = mongoose.model("StorageSpace", storageSpaceSchema);
 
 module.exports = StorageSpace;
