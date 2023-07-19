@@ -122,6 +122,15 @@ class ItemRepository {
         return "An error occurred while deleting the item.";
       }
     }
+
+    async getItem(item_id) {
+      try {
+         const item = await Item.findById(item_id);
+          return item;
+      } catch (error) {
+        console.log(error);
+      }
+    }
 }
 
 module.exports = ItemRepository;
