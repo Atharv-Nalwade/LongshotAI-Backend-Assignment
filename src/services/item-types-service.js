@@ -5,6 +5,7 @@ class ItemTypeService{
         this.itemTypeRepository = new ItemTypeRepository();
     }
 
+    // Create a new item type
     async createItemType(name,requires_refrigeration){
         try {
             const itemType = await this.itemTypeRepository.createItemType(name,requires_refrigeration);
@@ -14,6 +15,7 @@ class ItemTypeService{
         }
     }
 
+    // Rename an item type
     async renameItemType(id,name){
         try {
             const renamedItemType = await this.itemTypeRepository.renameItemType(id,name);
@@ -23,6 +25,7 @@ class ItemTypeService{
         }
     }
 
+    // Delete an item type
     async deleteItemType(id){
         try {
             const deletedItemType = await this.itemTypeRepository.deleteItemType(id);

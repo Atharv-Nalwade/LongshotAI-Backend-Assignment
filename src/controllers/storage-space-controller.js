@@ -3,6 +3,16 @@ const StorageSpace = require("../services/storage-space-service.js");
 
 const StorageSpaceService = new StorageSpace();
 
+/**
+ * Create a new storage space.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.body.name - The name of the storage space.
+ * @param {number} req.body.max_limit - The maximum limit of items the storage space can hold.
+ * @param {boolean} req.body.refrigeration - Indicates if the storage space has refrigeration.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the created storage space.
+ */
 const createStorageSpace = async (req, res) => {
     try {
         const { name, max_limit, refrigeration } = req.body;
@@ -29,6 +39,15 @@ const createStorageSpace = async (req, res) => {
     }
 }
 
+/**
+ * Rename an existing storage space.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.params.id - The id of the storage space to be renamed.
+ * @param {string} req.body.name - The new name for the storage space.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the renamed storage space.
+ */
 const renameStorageSpace = async (req, res) => {
     try {
         const { id } = req.params;
@@ -48,6 +67,14 @@ const renameStorageSpace = async (req, res) => {
     }
 }
 
+/**
+ * Get items in a storage space.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.params.id - The id of the storage space.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response containing the retrieved items in the storage space.
+ */
 const getItemsInStorageSpace = async (req, res) => {
     try {
         const { id: storage_space_id } = req.params;
@@ -67,6 +94,14 @@ const getItemsInStorageSpace = async (req, res) => {
     }
 }
 
+/**
+ * Delete a storage space.
+ *
+ * @param {Object} req - The request object.
+ * @param {string} req.params.id - The id of the storage space to be deleted.
+ * @param {Object} res - The response object.
+ * @returns {Object} The response indicating the status of the deletion.
+ */
 const deleteStorageSpace = async (req, res) => {
     try {
         const { id } = req.params;

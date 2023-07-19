@@ -6,6 +6,7 @@ class ItemService{
         this.itemRepository = new ItemRepository();
     }
 
+    // Create a new item
     async createItem(item_type_id,storage_space_id,expiration_date){
         try {
             const item = await this.itemRepository.createItem(item_type_id,storage_space_id,expiration_date);
@@ -15,6 +16,7 @@ class ItemService{
         }
     }
 
+    // Get all items
     async getAllItems(sortingManner){
         try {
             const items = await this.itemRepository.getAllItems(sortingManner);
@@ -24,6 +26,7 @@ class ItemService{
         }
     }
 
+    // Relocate an item
     async relocateItem(item_id,storage_space_id){
         try {
             const relocatedItem = await this.itemRepository.relocateItem(item_id,storage_space_id);
@@ -33,6 +36,7 @@ class ItemService{
         }
     }
 
+    // Delete an item
     async deleteItem(item_id){
         try {
             const deletedItem = await this.itemRepository.deleteItem(item_id);

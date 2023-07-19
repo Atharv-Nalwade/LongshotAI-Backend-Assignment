@@ -6,6 +6,7 @@ class StorageSpaceService{
         this.storageSpaceRepository = new StorageSpaceRepository();
     }
 
+    // Create a new storage space
   async createStorageSpace(name,max_limit,refrigeration){
     try {
         const storageSpace = await this.storageSpaceRepository.create(name,max_limit,refrigeration);
@@ -15,6 +16,7 @@ class StorageSpaceService{
     }
   }
 
+  // Rename a storage space
   async renameStorageSpace(id,name){
      try {
        const renamedStorageSpace = await this.storageSpaceRepository.renameStorageSpace(id,name);
@@ -24,6 +26,7 @@ class StorageSpaceService{
      }
   }
 
+  // Get all storage spaces
   async getItemsInStorageSpace(storage_space_id){
     try {
        const items = await this.storageSpaceRepository.getItemsInStorageSpace(storage_space_id);
@@ -33,6 +36,7 @@ class StorageSpaceService{
     }
   }
 
+  // Delete a storage space
   async deleteStorageSpace(id){
     try {
       const deletedStorageSpace = await this.storageSpaceRepository.deleteStorageSpace(id);

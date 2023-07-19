@@ -3,6 +3,7 @@ const Item = require("../models/item.js");
 
 class ItemTypeRepository{
 
+    // Create a new item type
     async createItemType(name,requires_refrigeration){
         try {
             if( await ItemType.findOne({ name }) ) return "Item Type already exists"
@@ -13,6 +14,7 @@ class ItemTypeRepository{
         }
     }
 
+    // Check if an item type exists
     async itemTypeExists(item_type_id){
         try {
             if( await ItemType.findById(item_type_id) ) return true;
@@ -22,6 +24,7 @@ class ItemTypeRepository{
         }
     }
 
+    // Rename an item type
     async renameItemType(id,name){
         try {
             const itemType = await ItemType.findByIdAndUpdate(id,{ name },{ new: true });
@@ -31,6 +34,7 @@ class ItemTypeRepository{
         }
     }
 
+    // Delete an item type
     async deleteItemType(id){
         try {
           const itemsCount = await Item.countDocuments({ 'item_type_id': id });
@@ -44,6 +48,7 @@ class ItemTypeRepository{
         }
     }
 
+    // Check if an item type requires refrigeration
     async isItemTypeRefrigerated(item_type_id){
         try {
             const itemType = await ItemType.findById(item_type_id);

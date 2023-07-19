@@ -3,6 +3,7 @@ const ItemType = require("../models/item-type.js");
 
 class StorageSpaceRepository {
 
+  // Create a new storage space
   async create(name, max_limit, refrigeration) {
     try {
       if( await StorageSpace.findOne({name:name})) return "Storage Space already exists";
@@ -17,6 +18,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Check if a storage space exists
   async storageSpaceExists(storage_space_id) {
     try {
       if (await StorageSpace.findById(storage_space_id)) return true;
@@ -26,6 +28,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Check if a storage space is full
   async isStorageSpaceFull(storage_space_id) {
     try {
       const size = await StorageSpace.findById(storage_space_id);
@@ -36,6 +39,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Increase the current count of a storage space
   async increaseStorageSpaceCount(storage_space_id) {
     try {
       await StorageSpace.findByIdAndUpdate(
@@ -48,6 +52,7 @@ class StorageSpaceRepository {
     }
   }
 
+// Rename a storage space
   async renameStorageSpace(id, name) {
     try {
       const storageSpace = await StorageSpace.findByIdAndUpdate(
@@ -61,6 +66,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Add items to a storage space
   async addItems(storage_space_id, itemId) {
     try {
       await StorageSpace.findByIdAndUpdate(storage_space_id, {
@@ -71,6 +77,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Get all storage spaces
   async getItemsInStorageSpace(storage_space_id) {
     try {
       const storageSpace = await StorageSpace.findById(
@@ -97,6 +104,7 @@ class StorageSpaceRepository {
     }
   }
 
+  // Check if a storage space requires refrigeration
   async isStorageSpaceRefrigerated(storage_space_id) {
     try {
       const storageSpace = await StorageSpace.findById(storage_space_id);
@@ -106,20 +114,7 @@ class StorageSpaceRepository {
     }
   }
 
-  // async deleteStorageSpace(storage_space_id){
-  //   try {
-  //     console.log(await StorageSpace.findById(storage_space_id).select('current_count'));
-  //     if(await StorageSpace.findById(storage_space_id).select('current_count')===0){
-  //       const storageSpace = await StorageSpace.findByIdAndDelete(storage_space_id);
-  //       return storageSpace;
-  //     }else{
-  //      return "Storage Space is not empty";
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }
-
+  // Delete a storage space
   async deleteStorageSpace(storage_space_id) {
     try {
       const storageSpace = await StorageSpace.findById(storage_space_id).select( "current_count" );
