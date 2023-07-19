@@ -4,6 +4,8 @@ This documentation provides an overview of the APIs available in the Grocery App
 
 # VideoExplanation Link : https://drive.google.com/drive/folders/1EQcHFhfovV8XIttB-De9h6nvzb2Plz3-?usp=sharing
 
+# Postman Collection Link:- https://crimson-spaceship-479000.postman.co/workspace/New-Team-Workspace~5e5d7c09-620b-47cb-9380-723511705cb8/collection/19543675-70fe63fb-d4fa-43cd-a35a-004acc5dddde?action=share&creator=19543675
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
