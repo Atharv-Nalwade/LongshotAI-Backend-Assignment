@@ -41,6 +41,15 @@ class ItemService{
             console.log(error);
         }
     }
+
+    async getItem(item_id){
+        try {
+            const item = await this.itemRepository.getItem(item_id);
+            return item;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 module.exports = ItemService;
