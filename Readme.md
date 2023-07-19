@@ -17,8 +17,10 @@ This documentation provides an overview of the APIs available in the Grocery App
   - [Item Types](#item-types)
   - [Items](#items)
 - [Error Handling](#error-handling)
-- [Contributing](#contributing)
-- [License](#license)
+- [Note](#note)
+- [Assumptions](#assumptions)
+- [Resources](#following-resources-were-used-while-its-devlopment)
+- [Future Scope](#future-scope)
 
 ## Getting Started
 
@@ -103,14 +105,14 @@ The API endpoints handle various error scenarios and provide appropriate error r
 For detailed error handling information, please refer to the API documentation.
 
 ## Note
-- The src/cleaner/log.txt file is used to keep trackk of deleted items and thus is used for logging purposes.
-- I learned Dokcer in a very short span and have tried to get the job done. If it fails( which it wont mostly) kinldy consider that.
+- The src/cleaner/log.txt file is used to keep track of deleted items and thus is used for logging purposes.
+- I learned Dokcer in a very short span and have tried to acheive the required functionality.If it fails( which it wont mostly) kinldy consider that. The main backend is well tested
 
 ## Assumptions
  - The expired items are cleaned up after every 24 hours given the server is running
  - The expiration_date parameter requires JS Date Object.
 
-## Following resources were used whil eits devlopment:
+## Following resources were used while its devlopment:
   - StackOverflow
   - Mongoose
   - npm
