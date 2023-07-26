@@ -6,6 +6,15 @@ class StorageSpaceService{
         this.storageSpaceRepository = new StorageSpaceRepository();
     }
 
+    async getAllStorageSpaces(){
+      try {
+        const storageSpaces = await this.storageSpaceRepository.getAllStorageSpaces();
+        return storageSpaces;
+      } catch (error) {
+        console .log(error);  
+      }
+    }
+
     // Create a new storage space
   async createStorageSpace(name,max_limit,refrigeration){
     try {

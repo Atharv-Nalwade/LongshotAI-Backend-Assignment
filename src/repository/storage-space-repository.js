@@ -3,6 +3,18 @@ const ItemType = require("../models/item-type.js");
 
 class StorageSpaceRepository {
 
+
+  // Get all storage spaces
+  async getAllStorageSpaces() {
+    try {
+      const storageSpaces = await StorageSpace.find();
+      return storageSpaces;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   // Create a new storage space
   async create(name, max_limit, refrigeration) {
     try {

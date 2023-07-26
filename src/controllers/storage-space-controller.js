@@ -127,9 +127,27 @@ const deleteStorageSpace = async (req, res) => {
     }
 }
 
+const getAllStorageSpaces = async (req, res) => {
+try {
+    const storageSpaces = await StorageSpaceService.getAllStorageSpaces();
+    return res.status(200).json({
+        message: 'Storage Spaces retrieved successfully',
+        data: storageSpaces,
+        success: true,
+    });
+} catch (error) {
+    return res.status(500).json({
+        message: 'Something went wrong',
+        data: {},
+        success: false,
+    });
+}
+}
+
 module.exports = {
     createStorageSpace,
     renameStorageSpace,
     deleteStorageSpace,
     getItemsInStorageSpace,
+    getAllStorageSpaces
 }
