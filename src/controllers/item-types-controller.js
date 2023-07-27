@@ -102,8 +102,28 @@ const deleteItemType = async (req, res) => {
   }
 };
 
+const getAllItemTypes =async(req,res)=> {
+  try {
+    const itemTypes = await itemTypesService.getAllItemTypes();
+    console.log(itemTypes);
+    return res.status(200).json({
+      message: "Item Types retrieved successfully",
+      data: itemTypes,
+      success: true,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      message: "Something went wrong",
+      data: {},
+      success: false,
+    });
+  }
+}
+
 module.exports = {
   createItemType,
   renameItemType,
   deleteItemType,
+  getAllItemTypes
 };

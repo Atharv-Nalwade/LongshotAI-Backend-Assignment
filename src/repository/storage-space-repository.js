@@ -132,7 +132,8 @@ class StorageSpaceRepository {
     try {
       const storageSpace = await StorageSpace.findById(storage_space_id).select( "current_count" );
       if (storageSpace && storageSpace.current_count === 0) {
-        await StorageSpace.findByIdAndDelete(storage_space_id);
+        let deletedStorageSpace = await StorageSpace.findByIdAndDelete(storage_space_id);
+        return deletedStorageSpace;
         return "Storage space deleted successfully";
       } else {
         return "Storage space is not empty";

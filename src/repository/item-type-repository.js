@@ -14,6 +14,15 @@ class ItemTypeRepository{
         }
     }
 
+    async getAllItemTypes(){
+        try {
+            const itemTypes = await ItemType.find();
+            return itemTypes;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     // Check if an item type exists
     async itemTypeExists(item_type_id){
         try {

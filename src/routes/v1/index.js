@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const { createStorageSpace,renameStorageSpace,deleteStorageSpace,getItemsInStorageSpace,getAllStorageSpaces } = require("../../controllers/storage-space-controller.js");
-const { createItemType,renameItemType,deleteItemType } = require("../../controllers/item-types-controller.js");
+const { createItemType,renameItemType,deleteItemType,getAllItemTypes } = require("../../controllers/item-types-controller.js");
 const { createItem, getAllItems, relocateItem, deleteItem } = require("../../controllers/items-controller.js");
 
 // Storage Spaces API
@@ -14,6 +14,7 @@ router.get('/storage-spaces', getAllStorageSpaces);
 
 // Item Types API
 router.post('/item-types', createItemType); 
+router.get('/item-types',getAllItemTypes)
 router.put('/item-types/:id', renameItemType);
 router.delete('/item-types/:id', deleteItemType);
 

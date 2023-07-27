@@ -34,6 +34,15 @@ class ItemTypeService{
             console.log(error);
         }
     }
+
+    async getAllItemTypes(){
+        try {
+            const itemTypes = await this.itemTypeRepository.getAllItemTypes();
+            return itemTypes;
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
 
 
