@@ -31,7 +31,8 @@ class StorageSpaceService{
        const renamedStorageSpace = await this.storageSpaceRepository.renameStorageSpace(id,name);
        return renamedStorageSpace;
      } catch (error) {
-      console.log(error);
+      // console.log(error.message);
+        throw new Error(error.message);
      }
   }
 

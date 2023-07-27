@@ -74,7 +74,8 @@ class StorageSpaceRepository {
       );
       return storageSpace;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      throw error;
     }
   }
 
