@@ -15,7 +15,7 @@ const itemSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-});
+},{ timestamps: true });
 
 const Item = mongoose.model('Item', itemSchema);
 
