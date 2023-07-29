@@ -107,6 +107,7 @@ const getItemsInStorageSpace = async (req, res) => {
 const deleteStorageSpace = async (req, res) => {
     try {
         const { id } = req.params;
+        console.log(id);
         const storageSpace = await StorageSpaceService.deleteStorageSpace(id);
         if(storageSpace == "Storage space is not empty"){
             return res.status(404).json({
